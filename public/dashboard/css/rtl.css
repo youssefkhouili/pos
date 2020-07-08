@@ -1,7 +1,7 @@
-html, body {
-    direction: rtl;
-}
-
 .main-sidebar {
     right: 0
+}
+
+nav .ml-auto {
+    margin-left: 0 !important
 }
