@@ -1,0 +1,7 @@
+html, body {
+    direction: rtl;
+}
+
+.main-sidebar {
+    right: 0
+}

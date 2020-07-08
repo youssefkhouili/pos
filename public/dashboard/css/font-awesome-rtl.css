@@ -1,0 +1,12 @@
+.content-wrapper, .main-header {
+    margin-right: 250px;
+    margin-left: 0 !important;
+}
+
+.main-footer {
+    margin-right: 0;
+}
+
+.brand-image {
+    float: right !important;
+}
