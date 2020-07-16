@@ -5,3 +5,7 @@
 nav .ml-auto {
     margin-left: 0 !important
 }
+
+.content .card-header .card-title {
+    float: right;
+}

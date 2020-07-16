@@ -15,7 +15,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">John Doe</a>
+          <a href="#" class="d-block">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</a>
         </div>
       </div>
 
@@ -30,6 +30,22 @@
               <span>@lang('site.dashboard')</span>
             </a>
           </li>
+          @if (auth()->user()->hasPermission('read_categories'))
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{ route('dashboard.categories.index') }}" class="nav-link active">
+            <i class="fas fa-users"></i>
+              <span>@lang('site.categories')</span>
+            </a>
+          </li>
+          @endif
+          @if (auth()->user()->hasPermission('read_users'))
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{ route('dashboard.users.index') }}" class="nav-link active">
+            <i class="fas fa-users"></i>
+              <span>@lang('site.users')</span>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

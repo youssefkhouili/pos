@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dashboard/css/ionicons.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dashboard/css/skin-blue.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('dashboard/css/noty.css') }}">
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset ('dashboard/css/adminlte.min.css') }}">
   <!-- Font Awesome -->
   @if (app()->getLocale() === 'ar')
   <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome-rtl.css') }}">
@@ -17,8 +20,6 @@
   <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap-rtl.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dashboard/css/rtl.css') }}">
   @else
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset ('dashboard/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @endif
@@ -26,7 +27,7 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-  @include('admin.layouts._navbar')
+    @include('admin.layouts._navbar')
 
 
   @include('admin.layouts._main-aside')
@@ -34,9 +35,9 @@
 
 
   <div class="content-wrapper">
+    @include('admin.partials._session')
     @yield('content')
   </div>
-    @include('admin.partials._errors')
   <footer class="main-footer" style="margin-left: 0">
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
@@ -65,5 +66,24 @@
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- Sparkline -->
 <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+<script src="{{ asset('dashboard/js/noty.min.js') }}"></script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('#user_profile').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+}
+
+$("#image-input").change(function() {
+  readURL(this);
+});
+
+</script>
 </body>
 </html>
