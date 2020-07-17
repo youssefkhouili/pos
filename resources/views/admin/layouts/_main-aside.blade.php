@@ -38,6 +38,14 @@
             </a>
           </li>
           @endif
+          @if (auth()->user()->hasPermission('read_products'))
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{ route('dashboard.products.index') }}" class="nav-link active">
+            <i class="fas fa-users"></i>
+              <span>@lang('site.products')</span>
+            </a>
+          </li>
+          @endif
           @if (auth()->user()->hasPermission('read_users'))
           <li class="nav-item has-treeview menu-open">
             <a href="{{ route('dashboard.users.index') }}" class="nav-link active">

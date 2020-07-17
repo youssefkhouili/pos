@@ -67,6 +67,7 @@
 <!-- Sparkline -->
 <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
 <script src="{{ asset('dashboard/js/noty.min.js') }}"></script>
+<script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -80,9 +81,13 @@
         }
 }
 
-$("#image-input").change(function() {
-  readURL(this);
-});
+    $("#image-input").change(function() {
+    readURL(this);
+    });
+
+    CKEDITOR.config.language = "{{ app()->getLocale() }}"
+
+
 
 </script>
 </body>
