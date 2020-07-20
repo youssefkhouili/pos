@@ -12,16 +12,28 @@
                 <select name="category_id" class="form-control">
                     <option value="" disabled>@lang('site.categories')</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group d-flex flex-column">
-                <label for="image">@lang('site.image')</label>
+                <label for="user_profile">@lang('site.image')</label>
                 <input type="file" name="image" id="image-input">
             </div>
             <div class="form-group">
-                <img id="image" src="{{ asset('uploads/users_images/default_product.png') }}" style="width: 100px" class="img-thumbnail" alt="">
+                <img id="user_profile" src="{{ asset('uploads/product_images/default_product.png') }}" style="width: 100px" class="img-thumbnail" alt="">
+            </div>
+            <div class="form-group">
+                <label for="purchase_price">@lang('site.purchase_price')</label>
+                <input type="number" name="purchase_price" id="purchase_price" class="form-control" value="{{ old('purchase_price') }}">
+            </div>
+            <div class="form-group">
+                <label for="sale_price">@lang('site.sale_price')</label>
+                <input type="number" name="sale_price" id="sale_price" class="form-control" value="{{ old('sale_price') }}">
+            </div>
+            <div class="form-group">
+                <label for="stock">@lang('site.stock')</label>
+                <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock') }}">
             </div>
             @foreach (config('translatable.locales') as $locale)
                 <div class="form-group">

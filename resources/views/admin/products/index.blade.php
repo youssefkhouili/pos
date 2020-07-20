@@ -17,6 +17,14 @@
                             <input type="text" name="search" placeholder="@lang('site.search')" class="form-control" value="{{ request()->search }}">
                         </div>
                         <div class="col-md-4">
+                            <select name="category_id" class="form-control">
+                                <option value="">@lang('site.all_categories')</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> @lang('site.search')</button>
                             @if (auth()->user()->hasPermission('create_products'))
                                 <a href="{{ route('dashboard.products.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> @lang('site.add')</a>
@@ -31,32 +39,36 @@
                         <tr>
                             <th>#</th>
                             <th>@lang('site.product_name')</th>
-                            <th>@lang('site.description')</th>
+                            <th>@lang('site.prod_description')</th>
+                            <th>@lang('site.prod_category')</th>
                             <th>@lang('site.image')</th>
                             <th>@lang('site.purchase_price')</th>
                             <th>@lang('site.sale_price')</th>
+                            <th>@lang('site.profit')</th>
                             <th>@lang('site.stock')</th>
                             <th>@lang('site.action')</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $index=>$category)
+                        @foreach ($products as $index=>$product)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->description }}</td>
-                            <td><img alt="image_product" src="" /></td>
-                            <td>{{ $category->purchase_price }}</td>
-                            <td>{{ $category->sale_price }}</td>
-                            <td>{{ $category->stock }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{!! $product->description !!}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td><img alt="image_product" src="{{ $product->image_path }}" style="width: 70px" class="img-thumbnail" alt="product_profile" /></td>
+                            <td>{{ $product->purchase_price }}</td>
+                            <td>{{ $product->sale_price }}</td>
+                            <td>{{ $product->profit_percent }}</td>
+                            <td>{{ $product->stock }}</td>
                             <td>
                                 @if (auth()->user()->hasPermission('update_products'))
-                                    <a href="{{ route('dashboard.products.edit', $category->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
+                                    <a href="{{ route('dashboard.products.edit', $product->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
                                 @else
                                     <button class="btn btn-secondary btn-sm disabled"><i class="fas fa-edit"></i> @lang('site.edit')</button>
                                 @endif
                                 @if (auth()->user()->hasPermission('delete_products'))
-                                    <form action="{{ route('dashboard.products.destroy', $category->id) }}" method="post" style="display: inline-block">
+                                    <form action="{{ route('dashboard.products.destroy', $product->id) }}" method="post" style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
                                         <button onclick="confirm('@lang('site.confirm')')" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> @lang('site.delete')</button>

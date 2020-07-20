@@ -17,4 +17,18 @@ class Product extends Model implements TranslatableContract
     {
         return $this->belongsTo(Category::class);
     }
+
+    protected $appends = ['image_path', 'profit_percent'];
+
+    public function getImagePathAttribute()
+    {
+        return asset('uploads/product_images/' . $this->image);
+    }
+
+    public function getProfitPercentAttribute()
+    {
+        $profit = $this->sale_price - $this->purchase_price;
+        $profit_percent = $profit * 100 / $this->purchase_price;
+        return round($profit_percent, 2) . '%';
+    }
 }

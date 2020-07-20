@@ -32,6 +32,8 @@
                             <th>#</th>
                             <th>@lang('site.category_name')</th>
                             <th>@lang('site.action')</th>
+                            <th>@lang('site.prod_count')</th>
+                            <th>@lang('site.related_prod')</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +57,8 @@
                                     <button class="btn btn-danger btn-sm disabled"><i class="fas fa-trash"></i> @lang('site.delete')</button>
                                 @endif
                             </td>
+                            <td>{{ $category->product->count() }}</td>
+                            <td><a href="{{ route('dashboard.products.index', ['category_id' => $category->id]) }}" class="btn btn-primary btn-sm">@lang('site.related_prod')</a></td>
                         </tr>
                         @endforeach
                     </tbody>
