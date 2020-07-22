@@ -52,5 +52,11 @@
         'prod_category'     => 'قسم المنتوج',
         'product_register'  => 'تسجيل منتوج جديد',
         'prod_add_success'  => 'تم تسجيل المنتوج بنجاح',
-        'prod_description'  => 'وصف المنتوج'
+        'prod_description'  => 'وصف المنتوج',
+        'clients'           => 'العملاء',
+        'name'              => 'الإسم',
+        'phone'             => 'التلفون',
+        'address'           => 'العنوان',
+        'dont_have_number'  => 'لايتوفر على رقم',
+        'client_register'   => 'تسجيل عملاء'
     ];

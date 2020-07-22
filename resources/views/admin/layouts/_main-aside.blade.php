@@ -46,6 +46,14 @@
             </a>
           </li>
           @endif
+          @if (auth()->user()->hasPermission('read_clients'))
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{ route('dashboard.clients.index') }}" class="nav-link active">
+            <i class="fas fa-users"></i>
+              <span>@lang('site.clients')</span>
+            </a>
+          </li>
+          @endif
           @if (auth()->user()->hasPermission('read_users'))
           <li class="nav-item has-treeview menu-open">
             <a href="{{ route('dashboard.users.index') }}" class="nav-link active">
