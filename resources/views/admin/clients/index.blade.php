@@ -33,6 +33,7 @@
                             <th>@lang('site.name')</th>
                             <th>@lang('site.phone')</th>
                             <th>@lang('site.address')</th>
+                            <th>@lang('site.add_order')</th>
                             <th>@lang('site.action')</th>
                         </tr>
                     </thead>
@@ -43,6 +44,11 @@
                             <td>{{ $client->name }}</td>
                             <td>{{ $client->phone[0] }}</td>
                             <td>{{ $client->address }}</td>
+                            @if (auth()->user()->hasPermission('create_orders'))
+                                <td><a class="btn btn-primary btn-sm" href="{{ route('dashboard.clients.orders.create', $client->id) }}">@lang('site.add_order')</a></td>
+                            @else
+                                <td><a class="btn btn-primary btn-sm disabled">@lang('site.add_order')</a></td>
+                            @endif
                             <td>
                                 @if (auth()->user()->hasPermission('update_clients'))
                                     <a href="{{ route('dashboard.clients.edit', $client->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>

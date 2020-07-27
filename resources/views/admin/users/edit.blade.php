@@ -31,7 +31,7 @@
                 <div class="card-header">
                     <h3 class="card-title p-3">@lang('site.permissions')</h3>
                     @php
-                        $models = ['users', 'categories', 'products'];
+                        $models = ['users', 'categories', 'products', 'clients', 'orders'];
                         $maps = ['read', 'create', 'update', 'delete'];
                     @endphp
                     <ul class="nav nav-pills p-2">

@@ -26,11 +26,11 @@
             </div>
             <div class="form-group">
                 <label for="purchase_price">@lang('site.purchase_price')</label>
-                <input type="number" name="purchase_price" id="purchase_price" class="form-control" value="{{ $product->purchase_price }}">
+                <input type="number" name="purchase_price" step="0.01" id="purchase_price" class="form-control" value="{{ $product->purchase_price }}">
             </div>
             <div class="form-group">
                 <label for="sale_price">@lang('site.sale_price')</label>
-                <input type="number" name="sale_price" id="sale_price" class="form-control" value="{{ $product->sale_price }}">
+                <input type="number" step="0.01" name="sale_price" id="sale_price" class="form-control" value="{{ $product->sale_price }}">
             </div>
             <div class="form-group">
                 <label for="stock">@lang('site.stock')</label>
